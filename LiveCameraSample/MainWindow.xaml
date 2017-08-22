@@ -101,10 +101,48 @@
                     <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"  />
                     <oxy:PlotView Grid.Row="2" Model="{Binding PieModel}"/>
 
-                    <oxy:PlotView Grid.Row="0" Grid.Column="1" Model="{Binding LinearModel2}"/>
+                    <oxy:PlotView Grid.Row="0" Grid.Column="2" Model="{Binding LinearModel2}"/>
                     <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  />
-                    <oxy:PlotView Grid.Row="2" Grid.Column="1" Model="{Binding PieModel2}"/>
 
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <Rectangle Grid.Row="1" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="DarkRed"/>
+                        <Rectangle Grid.Row="2" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="HotPink"/>
+                        <Rectangle Grid.Row="3" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Green"/>
+                        <Rectangle Grid.Row="4" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Purple"/>
+                        <Rectangle Grid.Row="5" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Yellow"/>
+                        <Rectangle Grid.Row="6" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Gray"/>
+                        <Rectangle Grid.Row="7" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Blue"/>
+                        <Rectangle Grid.Row="8" Grid.Column="1" Margin="4" Width="20" MaxHeight="20" Fill="Orange"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" x:Name="txtAnger" Text="Anger"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" x:Name="txtContempt" Text="Contempt"/>
+                        <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" x:Name="txtDisgust" Text="Disgust"/>
+                        <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" x:Name="txtFear" Text="Fear"/>
+                        <TextBlock Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" x:Name="txtHappiness" Text="Happiness"/>
+                        <TextBlock Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" x:Name="txtNeutral" Text="Neutral"/>
+                        <TextBlock Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" x:Name="txtSadness" Text="Sadness"/>
+                        <TextBlock Grid.Row="8" Grid.Column="2" VerticalAlignment="Center" x:Name="txtSurprise" Text="Surprise"/>
+                        
+
+                    </Grid>
                     <GridSplitter Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch"  />
 
                 </Grid>

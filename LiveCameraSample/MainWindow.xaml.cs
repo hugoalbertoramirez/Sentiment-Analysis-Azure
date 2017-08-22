@@ -53,6 +53,7 @@ namespace LiveCameraSample
 
         public PlotModel LinearModel { get; private set; }
         public PlotModel PieModel { get; private set; }
+        public PlotModel LinearModel2 { get; private set; }
 
         public MainWindow()
         {
@@ -204,8 +205,32 @@ namespace LiveCameraSample
 
             #region cross-linear models initialization
 
+            LinearModel2 = new PlotModel { Title = "Linear model chart" };
+            LinearModel2.Axes.Add(new LinearAxis()
+            {
+                Maximum = 1.1,
+                Minimum = 0,
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.Dot,
+                Position = AxisPosition.Left
+            });
 
+            LinearModel2.Axes.Add(new DateTimeAxis()
+            {
+                Position = AxisPosition.Bottom,
+            });
 
+            LinearModel2.Series.Add(new LineSeries() { Title = "Anger", Color = OxyColors.DarkRed });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Contempt", Color = OxyColors.HotPink });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Disgust", Color = OxyColors.Green });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Fear", Color = OxyColors.Purple });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Happiness", Color = OxyColors.Yellow });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Neutral", Color = OxyColors.Gray });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Sadness", Color = OxyColors.Blue });
+            LinearModel2.Series.Add(new LineSeries() { Title = "Surprise", Color = OxyColors.Orange });
+
+            LinearModel2.IsLegendVisible = true;
+            
             #endregion
         }
 
@@ -350,6 +375,8 @@ namespace LiveCameraSample
 
         private void UpdateGraph(Microsoft.ProjectOxford.Common.Contract.EmotionScores emotions)
         {
+            #region Linear model
+
             var angerSerie = (AreaSeries)LinearModel.Series[0];
             var contemptSerie = (AreaSeries)LinearModel.Series[1];
             var disgustSerie = (AreaSeries)LinearModel.Series[2];
@@ -359,7 +386,7 @@ namespace LiveCameraSample
             var sadnessSerie = (AreaSeries)LinearModel.Series[6];
             var surpriseSerie = (AreaSeries)LinearModel.Series[7];
 
-            var now = DateTimeAxis.ToDouble(time);
+            double now = DateTimeAxis.ToDouble(time);
 
             double sum = emotions.Anger;
             angerSerie.Points.Add(new DataPoint(now, sum));
@@ -396,7 +423,9 @@ namespace LiveCameraSample
 
             LinearModel.InvalidatePlot(true);
 
-            ////////////////////////////////////////////////////////////////
+            #endregion
+
+            #region Pie chart
 
             var pieSlices =  ((PieSeries)PieModel.Series[0]).Slices.Select(s => s.Value).ToArray();
 
@@ -417,7 +446,60 @@ namespace LiveCameraSample
             
             PieModel.InvalidatePlot(true);
 
-            ////////////////////////////////////////////////////////////////
+            #endregion
+
+            #region Linear model 2
+            
+            var angerSerie2 = (LineSeries)LinearModel2.Series[0];
+            var contemptSerie2 = (LineSeries)LinearModel2.Series[1];
+            var disgustSerie2 = (LineSeries)LinearModel2.Series[2];
+            var fearSerie2 = (LineSeries)LinearModel2.Series[3];
+            var happinessSerie2 = (LineSeries)LinearModel2.Series[4];
+            var neutralSerie2 = (LineSeries)LinearModel2.Series[5];
+            var sadnessSerie2 = (LineSeries)LinearModel2.Series[6];
+            var surpriseSerie2 = (LineSeries)LinearModel2.Series[7];
+            
+            sum = emotions.Anger;
+            angerSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Contempt;
+            contemptSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Disgust;
+            disgustSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Fear;
+            fearSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Happiness;
+            happinessSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Neutral;
+            neutralSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Sadness;
+            sadnessSerie2.Points.Add(new DataPoint(now, sum));
+            
+            sum = emotions.Surprise;
+            surpriseSerie2.Points.Add(new DataPoint(now, sum));
+            
+
+            LinearModel2.InvalidatePlot(true);
+
+            #endregion
+
+            #region Labels 
+
+            txtAnger.Text =     string.Format("Anger     {0} %", emotions.Anger);
+            txtContempt.Text =  string.Format("Contempt  {0} %", emotions.Contempt);
+            txtDisgust.Text =   string.Format("Disgust   {0} %", emotions.Disgust);
+            txtFear.Text =      string.Format("Fear      {0} %", emotions.Fear);
+            txtHappiness.Text = string.Format("Happiness {0} %", emotions.Happiness);
+            txtNeutral.Text =   string.Format("Neutral   {0} %", emotions.Neutral);
+            txtSadness.Text =   string.Format("Sadness   {0} %", emotions.Sadness);
+            txtSurprise.Text =  string.Format("Surprise  {0} %", emotions.Surprise);
+
+            #endregion
         }
 
         /// <summary> Populate CameraList in the UI, once it is loaded. </summary>
