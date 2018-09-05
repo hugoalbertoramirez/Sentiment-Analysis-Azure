@@ -36,6 +36,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                
                 <Image x:Name="LeftImage" Grid.Row="0" Margin="5" />
                 <Image x:Name="RightImage" Grid.Row="1" Margin="5" Panel.ZIndex="1" />
             </Grid>
@@ -96,12 +97,12 @@
                         <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <oxy:PlotView Grid.Row="0" Model="{Binding LinearModel}"/>
                     <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"  />
-                    <oxy:PlotView Grid.Row="2" Model="{Binding PieModel}"/>
+                    <oxy:PlotView Grid.Row="0" Grid.Column="2" Model="{Binding PieModel}"/>
 
-                    <oxy:PlotView Grid.Row="0" Grid.Column="2" Model="{Binding LinearModel2}"/>
+                    <oxy:PlotView Grid.Row="2" Model="{Binding LinearModel2}"/>
                     <GridSplitter Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch"  />
 
                     <Grid Grid.Row="2" Grid.Column="2">
